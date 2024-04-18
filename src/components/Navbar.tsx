@@ -1,16 +1,14 @@
 'use client'
 
 import React from 'react'
-import { Menu, X } from 'lucide-react'
+import {  Menu, X } from 'lucide-react'
+import { useUserStore } from '@/store/store'
+import Link from 'next/link'
 
 const menuItems = [
   {
     name: 'Home',
-    href: '/',
-  },
-  {
-    name: 'Upload',
-    href: '/upload',
+    href: '#',
   },
   {
     name: 'Contact',
@@ -20,7 +18,7 @@ const menuItems = [
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
-
+  const{username,premium,setUserData}=useUserStore();
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
   }
@@ -28,6 +26,7 @@ export function Navbar() {
   return (
     <div className="relative w-full bg-white p-4">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
+        <Link href={'/'}>
         <div className="inline-flex items-center space-x-2">
           <span>
             <svg
@@ -45,6 +44,7 @@ export function Navbar() {
           </span>
           <span className="font-bold">Beatify</span>
         </div>
+        </Link>
         <div className="hidden lg:block">
           <ul className="inline-flex space-x-8">
             {menuItems.map((item) => (
@@ -59,13 +59,34 @@ export function Navbar() {
             ))}
           </ul>
         </div>
+        <div className='flex gap-4'>
+
+        {
+          !username && 
         <div className="hidden lg:block">
+          <Link href='/login'>
           <button
             type="button"
             className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
           >
-            Button text
+            login
           </button>
+          </Link>
+        </div>
+        }
+         {
+          username && 
+        <div className="hidden lg:block">
+          <Link href='/upload'>
+          <button
+            type="button"
+            className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+          >
+            upload
+          </button>
+          </Link>
+        </div>
+        }
         </div>
         <div className="lg:hidden">
           <Menu onClick={toggleMenu} className="h-6 w-6 cursor-pointer" />
@@ -118,12 +139,15 @@ export function Navbar() {
                     ))}
                   </nav>
                 </div>
+                {
+                  ! username &&
                 <button
                   type="button"
                   className="mt-4 w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                 >
-                  Button text
+                  login
                 </button>
+                }
               </div>
             </div>
           </div>

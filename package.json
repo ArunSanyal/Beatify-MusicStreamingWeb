@@ -11,8 +11,12 @@
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.549.0",
     "@aws-sdk/lib-dynamodb": "^3.549.0",
+    "@radix-ui/react-label": "^2.0.2",
+    "@radix-ui/react-slot": "^1.0.2",
     "aws-sdk": "^2.1595.0",
     "axios": "^1.6.8",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
     "cors": "^2.8.5",
     "dynamoose": "^4.0.0",
     "lucide-react": "^0.366.0",
@@ -20,7 +24,10 @@
     "react": "^18",
     "react-dom": "^18",
     "react-h5-audio-player": "^3.9.1",
-    "react-hot-toast": "^2.4.1"
+    "react-hot-toast": "^2.4.1",
+    "tailwind-merge": "^2.2.2",
+    "tailwindcss-animate": "^1.0.7",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@types/node": "^20",
