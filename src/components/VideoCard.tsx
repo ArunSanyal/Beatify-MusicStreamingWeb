@@ -1,42 +1,25 @@
-import React from 'react';
+import type { Song } from "@/lib/types";
 
-// Define a type for the video data
-type VideoData = {
-  title: string;
-  thumbnailUrl: string;
-  channelName: string;
-  viewCount: string;
-  createdAt: string;
-};
-
-// Example video data for illustration. In a real app, this would likely come from props or an API.
-const videoData: VideoData = {
-  title: "Sample Video Title",
-  thumbnailUrl: "https://via.placeholder.com/210x118",
-  channelName: "Channel Name",
-  viewCount: "1.2M views",
-  createdAt: "2 weeks ago",
-};
-
-// Define props for the VideoCard component. Here, we're making the video prop optional and providing a default value.
 type VideoCardProps = {
-  video?: VideoData;
+  song: Song;
 };
 
-const VideoCard: React.FC<VideoCardProps> = ({ video = videoData }) => {
+/** One row in the song list. */
+const VideoCard = ({ song }: VideoCardProps) => {
   return (
     <div className="flex items-center gap-4">
-                <PlayIcon className="w-6 h-6 text-gray-500 dark:text-gray-400" />
-                <div className="grid gap-1 leading-none">
-                  <div className="font-medium">{video.title.S}</div>
-                  <div className="text-xs text-gray-500 dark:text-gray-400">Daft Punk</div>
-                </div>
-                <div className="ml-auto text-xs">5:20</div>
-              </div>
+      <PlayIcon className="w-6 h-6 text-gray-500 dark:text-gray-400" aria-hidden="true" />
+      <div className="grid gap-1 leading-none min-w-0">
+        <div className="font-medium truncate">{song.title}</div>
+        <div className="text-xs text-gray-500 dark:text-gray-400 truncate">
+          {song.uploadedBy}
+        </div>
+      </div>
+    </div>
   );
 };
 
-function PlayIcon(props:any) {
+function PlayIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -52,7 +35,7 @@ function PlayIcon(props:any) {
     >
       <polygon points="5 3 19 12 5 21 5 3" />
     </svg>
-  )
+  );
 }
 
 export default VideoCard;
